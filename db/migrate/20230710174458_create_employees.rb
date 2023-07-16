@@ -15,8 +15,9 @@ class CreateEmployees < ActiveRecord::Migration[5.2]
 
     create_table :bils do |t|
       t.bigint :amount
-      t.string :type
+      t.string :claim_for
       t.bigint :employee_id
+      t.date   :expense_date
       t.timestamps
     end
   end

@@ -1,16 +1,25 @@
-<%= render 'employees/bootstrap_style' %>
-<h1>Employee Claims bill list</h1><%= button_to "Add new expense", "bils/create" ,method: "get" %>
-<table class="table">
-  <tr>
-    <th>Employee</th>
-    <th>claim of expense</th>
-    <th>Amount</th>
-  </tr>
-  <% @bils_list.each do |obj| %>
+<center><h1>Employee Claims bill list</h1></center>
+<div class="expense-container">
+  <button class='btn-primary add_new_expense_btn' >Add new expense</button>
+</div>
+<div class="portal_list_table">
+  <table class="table">
     <tr>
-        <td><%= obj.first_name%></td>
-        <td><%=obj.claim_for%></td>
-        <td><%=obj.amount%></td><td>
+      <th>Employee</th>
+      <th>Type of expense</th>
+      <th>Amount</th>
     </tr>
-  <% end %>
-</table>
+    <% @bils_list.each do |obj| %>
+      <tr>
+          <td><%= obj.first_name%></td>
+          <td><%=obj.claim_for%></td>
+          <td><%=obj.amount%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<script>
+  $('.add_new_expense_btn').on('click', function(){
+    location.href = "bils/create";
+  });
+</script>

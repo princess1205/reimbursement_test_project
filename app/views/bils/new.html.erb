@@ -1,21 +1,41 @@
-<h1>Bil Claims </h1>
+<center><h1>Claim Portal </h1></center>
 <%= form_for(@bils_list) do |info| %>
-    <%= info.select :employee_id, class: "form-control" do %>
-        <% @employees.each do |p| %>
-          <%= content_tag(:option, "#{p.first_name}", value: p.id) %>
-        <% end %>
-    <% end %>
-    <div>
-        <%= info.label :claim %><br>
-        <%= info.select :claim_for, [ 'Food','Travel','Meeting Ofsite' ], :prompt => 'Select Type' %>
+  <div class="expense_container">
+    <div class="claim_input employee_name dropdown">
+      <%= info.label :select_employee_name %><br>
+      <button class="btn dropdown-toggle" type="button" id="employeeDropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-Select-</button>
+      <input type="hidden" value="" id="employeeName" name="employee_id">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% @employees.each do |p| %>
+            <a class="dropdown-item employee-menu-item" data-id="<%= p.id%>"><%= p.first_name %></a>
+          <% end %>
+        </div>
     </div>
-  
-    <div>
+    <div class="claim_input expense_category">
+        <%= info.label :expense_category %><br>
+        <button class="btn dropdown-toggle" type="button" id="expenseDropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-Select-</button>
+        <input type="hidden" value="" id="expense_category" name="expense_category">
+          <div class="dropdown-menu" aria-labelledby="expenseDropdownMenuButton">
+          <a class="dropdown-item expense-type-menu-item" data-id="Food">Food</a>
+          <a class="dropdown-item expense-type-menu-item" data-id="Travel">Travel</a>
+          <a class="dropdown-item expense-type-menu-item" data-id="Meeting Offsite">Meeting Offsite</a>
+          </div>
+    </div>
+    <div class="claim_input expense_date">
+      <%= info.label :expense_date %><br>
+      <%= info.text_field :expense_date,  :id => "datepicker"%>
+    </div>
+    <div class="claim_input expense_amount">
       <%= info.label :Amount %><br>
-      <%= info.text_area :amount %>
+      <%= info.text_field :amount %>
     </div>
-   
-    <div>
-      <%= info.submit %>
+    <div class="claim_input cancel-btn">
+       <input type="button" value="Cancel" class='btn-light' onclick='window.location.href="/bils"'/>
+    </div>
+    <div class="claim_input create_btn">
+      <%= info.submit "Save" , :class => "btn-dark"%>
     </div>
 <% end %>
+  
+
+<%= javascript_include_tag "reimbursement_view" %>

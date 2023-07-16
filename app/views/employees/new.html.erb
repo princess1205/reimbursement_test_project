@@ -1,55 +1,4 @@
 <center><h1>Add a new employee</h1></center>
-<head>
-    <title>Example</title>
-    <style>
-    .body {
-      color: black;
-    }
-    .employee_container{
-      height: 418px;
-      position: relative;
-      border: 2px solid black;
-      top: 50%;
-      left: 26%;
-      right: 50%;
-      max-width: 50%;
-      .employee_details {
-        margin: 0;
-        position: absolute;
-        transform: translate(-50%, -50%);
-      }
-      .employee_name{
-        top: 15%;
-        left: 22%;
-       
-      }
-      .employee_last_name{
-        top: 15%;
-        left: 80%;
-      }
-      .employee_email {
-        top: 43%;
-        left: 23%;
-      }
-      .employee_designation{
-        top: 43%;
-        left: 80%;
-      }
-      .employee_departments{
-        top: 70%;
-        left: 50%;
-      }
-      .employee_create_btn{
-        top: 90%;
-        left: 85%;
-      }
-      .cancel-btn{
-        top: 90%;
-        left: 65%;
-      }
-    }
-    </style>
-</head>
 <%= form_with model: @employees do |info| %>
   <div class="employee_container">
     <div class="employee_details employee_name">
@@ -73,7 +22,7 @@
     <div class="employee_details dropdown employee_departments">
       <%= info.label :Department_name %><br>
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-Select-</button>
-      <input type="hidden" value="" id = "favourite" name="dept_id">
+      <input type="hidden" value="" id = "departmentName" name="dept_id">
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <% @departments.each do |p| %>
             <a class="dropdown-item department-menu-item" data-id="<%= p.id%>"><%= p.dept_name %></a>
@@ -81,7 +30,7 @@
         </div>
     </div>
     <div class="employee_details cancel-btn">
-      <button class='btn-light' href='/employees'>Cancel</button>
+      <input type="button" value="Cancel" onclick='window.location.href="/employees"' class='btn-light'/>
     </div>
     <div class="employee_details employee_create_btn">
       <%= info.submit "Create Employee" , :class => "btn-dark"%>

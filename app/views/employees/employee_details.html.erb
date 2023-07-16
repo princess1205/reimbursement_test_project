@@ -1,18 +1,28 @@
-<h1>Employee List</h1><%= button_to "Add new employee", "employees/create" ,method: "get" %>
-<table class="table">
-  <tr>
-    <th>First name</th>
-    <th>Designation</th>
-    <th>Department</th>
-  </tr>
-  <% @employees.each do |obj| %>
+<center><h1>Employee List</h1></center>
+<div class="employee-container">
+  <button class='btn-primary create_emp_btn' href='/employees/create'>Add new employee</button>
+</div>
+<div class="portal_list_table">
+  <table class="table">
     <tr>
-        <td><%= obj.first_name%></td>
-        <td><%=obj.designation%></td>
-        <td><%=obj.dept_name%></td><td>
+      <th>First name</th>
+      <th>Designation</th>
+      <th>Department</th>
     </tr>
-  <% end %>
-</table>
+    <% @employees.each do |obj| %>
+      <tr>
+          <td><%= obj.first_name%></td>
+          <td><%=obj.designation%></td>
+          <td><%=obj.dept_name%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<script>
+  $('.create_emp_btn').on('click', function(){
+    location.href = "/employees/create";
+  });
+</script>
 
 
 
