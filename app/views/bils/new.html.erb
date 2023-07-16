@@ -1,0 +1,21 @@
+<h1>Bil Claims </h1>
+<%= form_for(@bils_list) do |info| %>
+    <%= info.select :employee_id, class: "form-control" do %>
+        <% @employees.each do |p| %>
+          <%= content_tag(:option, "#{p.first_name}", value: p.id) %>
+        <% end %>
+    <% end %>
+    <div>
+        <%= info.label :claim %><br>
+        <%= info.select :claim_for, [ 'Food','Travel','Meeting Ofsite' ], :prompt => 'Select Type' %>
+    </div>
+  
+    <div>
+      <%= info.label :Amount %><br>
+      <%= info.text_area :amount %>
+    </div>
+   
+    <div>
+      <%= info.submit %>
+    </div>
+<% end %>

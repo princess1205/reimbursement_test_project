@@ -1,0 +1,18 @@
+<h1>Employee List</h1><%= button_to "Add new employee", "employees/create" ,method: "get" %>
+<table class="table">
+  <tr>
+    <th>First name</th>
+    <th>Designation</th>
+    <th>Department</th>
+  </tr>
+  <% @employees.each do |obj| %>
+    <tr>
+        <td><%= obj.first_name%></td>
+        <td><%=obj.designation%></td>
+        <td><%=obj.dept_name%></td><td>
+    </tr>
+  <% end %>
+</table>
+
+
+
